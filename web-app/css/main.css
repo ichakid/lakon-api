@@ -87,6 +87,11 @@ img {
 	border: 0;
 }
 
+hr {
+	margin: 0.5em;
+}
+
+
 /* GENERAL */
 
 #grailsLogo a {
@@ -131,6 +136,12 @@ img {
 	top: 0;
 	text-indent: -9999px;
 }
+
+.template_show {
+	border-style:dashed;
+	border-color:red;
+}
+
 
 /* NAVIGATION MENU */
 
@@ -571,11 +582,6 @@ th:hover, tr:hover {
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
-}
-
-.ie6 .buttons input.delete, .ie6 .buttons input.edit, .ie6 .buttons input.save,
-.ie7 .buttons input.delete, .ie7 .buttons input.edit, .ie7 .buttons input.save {
-	padding-left: 36px;
 }
 
 .buttons .delete {

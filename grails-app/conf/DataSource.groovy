@@ -17,7 +17,7 @@ environments {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/lakon?useUnicode=yes&characterEncoding=UTF-8"
             username = "root"
-            password = ""
+            password = "root"
         }
     }
     test {
@@ -29,7 +29,9 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            url = "jdbc:mysql://localhost:3306/lakon?useUnicode=yes&characterEncoding=UTF-8"
+            username = "root"
+            password = "root"
 			grails.dbconsole.enabled = true
             properties {
                maxActive = -1

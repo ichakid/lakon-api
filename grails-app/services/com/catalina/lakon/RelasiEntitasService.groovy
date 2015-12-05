@@ -1,61 +1,56 @@
 package com.catalina.lakon
 
-import java.sql.Timestamp;
-
 import grails.transaction.Transactional
 
 import org.hibernate.criterion.CriteriaSpecification
 
 @Transactional
-class RelasiEntitasSumberService {
+class RelasiEntitasService {
 
     def serviceMethod() {
 	
 	}
 	
 	def list(){
-		def result = RelasiEntitasSumber.createCriteria().list() {
+		def result = RelasiEntitas.createCriteria().list() {
 			resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
 			createAlias('relasi', 'RL', CriteriaSpecification.LEFT_JOIN)
 			createAlias('tokoh', 'TK', CriteriaSpecification.LEFT_JOIN)
-			createAlias('organisasi', 'OR', CriteriaSpecification.LEFT_JOIN)
-			createAlias('sumber', 'SM', CriteriaSpecification.LEFT_JOIN)
+			createAlias('organisasi', 'ORG', CriteriaSpecification.LEFT_JOIN)
 			projections{
 				property('id','id')
+				property('waktu','waktu')
 				property('relasi','relasi')
 				property('tokoh','tokoh')
 				property('organisasi','organisasi')
-				property('sumber','sumber')
-				property('waktu','waktu')
 			}
 		}
-		
+
 		return result
 	}
 	
 	boolean save(Object obj) {
 		
-		RelasiEntitasSumber out = new RelasiEntitasSumber(
+		RelasiEntitas out = new RelasiEntitas(
+			waktu: obj.waktu,
 			relasi: obj.relasi,
 			tokoh: obj.tokoh,
 			organisasi: obj.organisasi,
-			sumber: obj.sumber,
-			waktu: obj.waktu,
 		)
 		return out.save(failOnError: true)
 	}
 	
 	boolean update(Object obj) {
-		def out = RelasiEntitasSumber.get(obj.id)
-		def relasi = Relasi.findById(obj.relasi.id.toLong())
-		def tokoh = Tokoh.findById(obj.relasi.id.toLong())
+		def out = RelasiEntitas.get(obj.id)
+		def relasi = Relasi.findById(obj.sumber.id.toLong())
+		def tokoh = Tokoh.findById(obj.sumber.id.toLong())
+		def organisasi = Organisasi.findById(obj.sumber.id.toLong())
 		
 		if (out!=null) {
-			out.relasi = relasi
-			out.tokoh = obj.tokoh
-			out.organisasi = obj.organisasi
-			out.sumber = obj.sumber
 			out.waktu = obj.waktu
+			out.relasi = relasi
+			out.tokoh = tokoh
+			out.organisasi = organisasi
 		}
 		return out.save(failOnError: true)
 	}

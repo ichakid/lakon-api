@@ -4,20 +4,22 @@ import grails.transaction.Transactional
 import org.hibernate.criterion.CriteriaSpecification
 
 @Transactional
-class RelasiService {
+class TokohService {
 
-	def serviceMethod() {
+    def serviceMethod() {
 	
 	}
 	
 	def list(){
-		def result = Relasi.createCriteria().list() {
+		def result = Tokoh.createCriteria().list() {
 			resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
-			createAlias('sumber', 'SR', CriteriaSpecification.LEFT_JOIN)
 			projections{
 				property('id','id')
-				property('keterangan','keterangan')
-				property('sumber','sumber')
+				property('nama','nama')
+				property('linkweb','linkweb')
+				property('isPemerintah','isPemerintah')
+				property('isBusinessman','isBusinessman')
+				property('isPolitician','isPolitician')
 			}
 		}
 
@@ -34,20 +36,25 @@ class RelasiService {
 	
 	boolean save(Object obj) {
 		
-		Relasi out = new Relasi(
-			keterangan: obj.keterangan,
-			sumber: obj.sumber
+		Tokoh out = new Tokoh(
+			nama: obj.nama,
+			linkweb: obj.linkweb,
+			isPemerintah: obj.isPemerintah,
+			isBusinessman: obj.isBusinessman,
+			sumber: obj.sumber,
 		)
 		return out.save(failOnError: true)
 	}
 	
 	boolean update(Object obj) {
-		def out = Relasi.get(obj.id)
-		def sumber = Sumber.findById(obj.sumber.id.toLong())
+		def out = Tokoh.get(obj.id)
 		
 		if (out!=null) {
-			out.keterangan = obj.keterangan
-			out.sumber = sumber
+			out.nama = obj.nama
+			out.linkweb = obj.linkweb
+			out.isPemerintah = obj.isPemerintah
+			out.isBusinessman = obj.isBusinessman
+			out.isPolitician = obj.isPolitician
 		}
 		return out.save(failOnError: true)
 	}

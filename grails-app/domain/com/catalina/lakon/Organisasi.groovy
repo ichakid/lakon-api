@@ -10,7 +10,7 @@ class Organisasi {
 	Boolean isSwasta
 	Boolean isBUMN
 	
-	static hasMany = [relasiEntitasSumber: RelasiEntitasSumber]
+	static hasMany = [relasiEntitas: RelasiEntitas]
 	
 	static mapping = {
 		id column: "ORGANISASI_ID"

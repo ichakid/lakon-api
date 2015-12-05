@@ -1,4 +1,4 @@
-package grails.angularjs.resources.test
+package com.catalina.lakon
 
 import grails.test.mixin.TestFor
 import spock.lang.Specification
@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(RestSampleController)
-class RestSampleControllerSpec extends Specification {
+@TestFor(OrganisasiController)
+class OrganisasiControllerSpec extends Specification {
 
     def setup() {
     }

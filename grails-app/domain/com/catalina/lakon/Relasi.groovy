@@ -3,11 +3,17 @@ package com.catalina.lakon
 class Relasi {
 
     String keterangan
-	
-	static hasMany = [relasiEntitasSumber: RelasiEntitasSumber]
+	Sumber sumber
+
+	static hasMany = [relasiEntitas: RelasiEntitas]
+	static belongsTo = [sumber: Sumber]
 	
 	static mapping = {
 		id column: "RELASI_ID"
+	}
+
+	static constraints = {
+		sumber nullable: false, blank: false
 	}
 
 }

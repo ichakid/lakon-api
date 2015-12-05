@@ -2,20 +2,20 @@ package com.catalina.lakon
 
 import grails.converters.JSON
 
-class RelasiEntitasSumberController {
+class SumberController {
 
     def scaffold =true
 	static allowedMethods = [list: "GET", save: "POST", update: "PUT", delete: ["DELETE"], show: "GET"]
-	def RelasiEntitasSumberService
+	def SumberService
 	
 	def list() {
-		render RelasiEntitasSumberService.list() as JSON
+		render SumberService.list() as JSON
 	}
 
 	def save() {
 		def output = ["message": "success"]
 
-		if (!RelasiEntitasSumberService.save(request.JSON)) {
+		if (!SumberService.save(request.JSON)) {
 			output = ["message": "failed"]
 		}
 
@@ -25,7 +25,7 @@ class RelasiEntitasSumberController {
 	def update() {
 		def output = ["message": "success"]
 
-		if (!RelasiEntitasSumberService.update(request.JSON)) {
+		if (!SumberService.update(request.JSON)) {
 			output = ["message": "failed"]
 		}
 
@@ -34,9 +34,9 @@ class RelasiEntitasSumberController {
 
 	def show() {
 		def id = params.id
-		RelasiEntitasSumber relasiEntitasSumber = RelasiEntitasSumber.findById(id.toLong())
+		Sumber sumber = Sumber.findById(id.toLong())
 
-		render relasi as JSON
+		render sumber as JSON
 
 	}
 }

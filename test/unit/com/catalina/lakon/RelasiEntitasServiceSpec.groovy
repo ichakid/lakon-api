@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(RelasiEntitasSumberService)
-class RelasiEntitasSumberServiceSpec extends Specification {
+@TestFor(RelasiEntitasService)
+class RelasiEntitasServiceSpec extends Specification {
 
     def setup() {
     }

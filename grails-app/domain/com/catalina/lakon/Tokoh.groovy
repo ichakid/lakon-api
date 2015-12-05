@@ -4,11 +4,11 @@ class Tokoh {
 	
 	String nama
 	String linkweb
-	Boolean isPemerintan
+	Boolean isPemerintah
 	Boolean isBusinessman
 	Boolean isPolitician
 	
-	static hasMany = [relasiEntitasSumber: RelasiEntitasSumber]
+	static hasMany = [relasiEntitas: RelasiEntitas]
 	
 	static mapping = {
 		id column: "TOKOH_ID"

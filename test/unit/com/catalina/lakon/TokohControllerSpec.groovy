@@ -6,8 +6,8 @@ import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(RelasiEntitasSumberController)
-class RelasiEntitasSumberControllerSpec extends Specification {
+@TestFor(TokohController)
+class TokohControllerSpec extends Specification {
 
     def setup() {
     }

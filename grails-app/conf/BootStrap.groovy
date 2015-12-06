@@ -10,6 +10,9 @@ class BootStrap {
 		Timestamp des4 = new Timestamp(115,11,4,0,0,0,0)
 		Timestamp des42014 = new Timestamp(114,11,4,0,0,0,0)
 
+
+		/*
+
     	Tokoh tokoh1 = new Tokoh(
 			nama: "Setya Novanto",
 			linkweb: "http://aniesbaswedan.com/",
@@ -58,6 +61,30 @@ class BootStrap {
 			isBUMN: false,
 			).save(flush:true,failOnError:true);
 
+    	Alias alias1 = new Alias(
+    		nama: "arb",
+    		tokoh: tokoh2,
+    		organsasi: null,
+    		).save(flush:true,failOnError:true);
+
+    	Alias alias2 = new Alias(
+    		nama: "ketua dpr",
+    		tokoh: tokoh1,
+    		organsasi: null,
+    		).save(flush:true,failOnError:true);
+
+    	Alias alias3 = new Alias(
+    		nama: "bakrie",
+    		tokoh: tokoh2,
+    		organsasi: null,
+    		).save(flush:true,failOnError:true);
+
+    	Alias alias4 = new Alias(
+    		nama: "golkar",
+    		organisasi: organisasi3,
+    		tokoh: null,
+    		).save(flush:true,failOnError:true);
+
     	Sumber sumber1 = new Sumber(
 			link: "http://news.detik.com/berita/3088453/hanya-3-menteri-yang-hadiri-resepsi-pernikahan-putri-novanto",
 			who: "admin",
@@ -105,6 +132,8 @@ class BootStrap {
 			tokoh: null,
 			organisasi: organisasi3,
 		).save(flush:true,failOnError:true);
+
+*/
 		
 
     }

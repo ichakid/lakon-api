@@ -42,9 +42,9 @@ class RelasiEntitasService {
 	
 	boolean update(Object obj) {
 		def out = RelasiEntitas.get(obj.id)
-		def relasi = Relasi.findById(obj.sumber.id.toLong())
-		def tokoh = Tokoh.findById(obj.sumber.id.toLong())
-		def organisasi = Organisasi.findById(obj.sumber.id.toLong())
+		def relasi = Relasi.findById(obj.relasi.id.toLong())
+		def tokoh = Tokoh.findById(obj.tokoh.id.toLong())
+		def organisasi = Organisasi.findById(obj.organisasi.id.toLong())
 		
 		if (out!=null) {
 			out.waktu = obj.waktu
@@ -67,6 +67,25 @@ class RelasiEntitasService {
 				property('waktu','waktu')
 				property('relasi','relasi')
 				property('tokoh','tokoh')
+			}
+		}
+
+		return result
+
+	}
+
+	def listByOrganisasi(Organisasi organisasi) {
+
+		def result = RelasiEntitas.createCriteria().list() {
+			eq("organisasi", organisasi)
+			resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+			createAlias('relasi', 'RL', CriteriaSpecification.LEFT_JOIN)
+			createAlias('organisasi', 'ORG', CriteriaSpecification.LEFT_JOIN)
+			projections{
+				property('id','id')
+				property('waktu','waktu')
+				property('relasi','relasi')
+				property('organisasi','organisasi')
 			}
 		}
 

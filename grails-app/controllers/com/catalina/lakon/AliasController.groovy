@@ -43,11 +43,11 @@ class AliasController {
 
 	def searchByAlias() {
 		def al =  params.alias
-		def res = Alias.findAllByNama(al.toLowerCase())
+		def res = Alias.findAllByNamaIlike(al.toLowerCase()+"%")
 
-		ArrayList response = new ArrayList()
+		def response = []
 
-		Tokoh tokoh = Tokoh.findByNama(al)	
+		Tokoh tokoh = Tokoh.findByNamaIlike(al+"%")	
 		if (tokoh!=null) {
 			AliasResponse ar = new AliasResponse()
 			ar.nama = tokoh.nama
@@ -56,13 +56,13 @@ class AliasController {
 			response.add(ar)
 		}
 
-		Organisasi organisasi = Organisasi.findByNama(al)	
+		Organisasi organisasi = Organisasi.findByNamaIlike(al+"%")	
 		if (organisasi!=null) {
 			AliasResponse aro = new AliasResponse()
 			aro.nama = organisasi.nama
 			aro.id = organisasi.id
 			aro.type = "organisasi"
-			response.add(ar)
+			response.add(aro)
 		}
 
 
@@ -80,12 +80,11 @@ class AliasController {
 				aliasResponse.id = org.id
 				aliasResponse.type = "organisasi"
 				response.add(aliasResponse)
-
 			}
 		}
+		
+		def uniqueRes = response.unique({a,b -> a.id <=> b.id})
 
-
-
-		render response as JSON
+		render uniqueRes as JSON
 	}
 }

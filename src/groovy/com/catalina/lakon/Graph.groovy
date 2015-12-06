@@ -1,7 +1,16 @@
 package com.catalina.lakon
 
+import java.util.*
+
 class Graph {
-	
-	static hasMany = [nodes: Node, edges: Edge]
+
+	ArrayList nodes
+	ArrayList edges
+
+	public Graph () {
+		nodes = new ArrayList()
+		edges = new ArrayList()
+
+	}
 	
 }

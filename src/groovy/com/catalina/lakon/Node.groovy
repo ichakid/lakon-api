@@ -7,4 +7,7 @@ class Node {
 	boolean root
 	String type
 
+	public Node () {
+		
+	}
 }

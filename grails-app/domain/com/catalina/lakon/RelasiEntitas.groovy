@@ -9,7 +9,7 @@ class RelasiEntitas {
 	Tokoh tokoh
 	Organisasi organisasi
 
-	static belongsTo = [tokoh: Tokoh,organisasi:Organisasi]
+	static belongsTo = [relasi:Relasi, tokoh: Tokoh, organisasi:Organisasi]
 
     static constraints = {
     	relasi nullable: false, blank: false

@@ -54,4 +54,23 @@ class RelasiEntitasService {
 		}
 		return out.save(failOnError: true)
 	}
+
+	def listByTokoh(Tokoh tokoh) {
+
+		def result = RelasiEntitas.createCriteria().list() {
+			eq("tokoh", tokoh)
+			resultTransformer(CriteriaSpecification.ALIAS_TO_ENTITY_MAP)
+			createAlias('relasi', 'RL', CriteriaSpecification.LEFT_JOIN)
+			createAlias('tokoh', 'TK', CriteriaSpecification.LEFT_JOIN)
+			projections{
+				property('id','id')
+				property('waktu','waktu')
+				property('relasi','relasi')
+				property('tokoh','tokoh')
+			}
+		}
+
+		return result
+
+	}
 }

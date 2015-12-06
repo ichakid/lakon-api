@@ -5,7 +5,7 @@ import grails.converters.JSON
 class TokohController {
 
     def scaffold =true
-	static allowedMethods = [list: "GET", save: "POST", update: "PUT", delete: ["DELETE"], show: "GET"]
+	static allowedMethods = [list: "GET", save: "POST", update: "PUT", delete: ["DELETE"], show: "GET", buildGraph: "GET"]
 	def TokohService
 	
 	def list() {

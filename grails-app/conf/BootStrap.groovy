@@ -8,6 +8,7 @@ class BootStrap {
 
     	Timestamp now = new Timestamp(new Date().getTime())
 		Timestamp des4 = new Timestamp(115,11,4,0,0,0,0)
+		Timestamp des42014 = new Timestamp(114,11,4,0,0,0,0)
 
     	Tokoh tokoh1 = new Tokoh(
 			nama: "Setya Novanto",
@@ -47,28 +48,62 @@ class BootStrap {
 			isBUMN: false,
 			).save(flush:true,failOnError:true);
 
+    	Organisasi organisasi3 = new Organisasi(
+			nama: "Partai Golkar",
+			linkweb: "http://www.golkar.or.id/",
+			isPartai: true,
+			isNonProfit: false,
+			isPemerintahan: false,
+			isSwasta: false,
+			isBUMN: false,
+			).save(flush:true,failOnError:true);
+
     	Sumber sumber1 = new Sumber(
 			link: "http://news.detik.com/berita/3088453/hanya-3-menteri-yang-hadiri-resepsi-pernikahan-putri-novanto",
 			who: "admin",
 			).save(flush:true,failOnError:true);
-		
+
+    	Sumber sumber2 = new Sumber(
+			link: "http://nasional.kompas.com/read/2014/12/04/07544291/Hari.Ini.Aburizal.Bakrie.Dilantik.sebagai.Ketum.Golkar.2014-2019",
+			who: "admin",
+			).save(flush:true,failOnError:true);
+
 		Relasi relasi1 = new Relasi(
 			keterangan: "pernikahan putri Setya Novanto",
 			sumber: sumber1,
 			).save(flush:true,failOnError:true);
 
+		Relasi relasi2 = new Relasi(
+			keterangan: "ketua umum golkar 2014 - 2019",
+			sumber: sumber2,
+			).save(flush:true,failOnError:true);
+
 		RelasiEntitas relasiEntitas1 = new RelasiEntitas(
 			waktu: des4,
 			relasi: relasi1,
-			tokoh: tokoh1,
+			tokoh: tokoh2,
 			organisasi: null,
 		).save(flush:true,failOnError:true);
 
 		RelasiEntitas relasiEntitas2 = new RelasiEntitas(
 			waktu: des4,
 			relasi: relasi1,
+			tokoh: tokoh1,
+			organisasi: null,
+		).save(flush:true,failOnError:true);
+
+		RelasiEntitas relasiEntitas3 = new RelasiEntitas(
+			waktu: des42014,
+			relasi: relasi2,
 			tokoh: tokoh2,
 			organisasi: null,
+		).save(flush:true,failOnError:true);
+
+		RelasiEntitas relasiEntitasd = new RelasiEntitas(
+			waktu: des42014,
+			relasi: relasi2,
+			tokoh: null,
+			organisasi: organisasi3,
 		).save(flush:true,failOnError:true);
 		
 

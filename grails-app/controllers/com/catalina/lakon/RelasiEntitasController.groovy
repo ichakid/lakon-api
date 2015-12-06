@@ -36,7 +36,25 @@ class RelasiEntitasController {
 		def id = params.id
 		RelasiEntitas relasiEntitas = RelasiEntitas.findById(id.toLong())
 
-		render relasiEntitas as JSON
+		render relasiEntitas.relasi as JSON
 
+	}
+
+	def buildGraph() {
+		def id = params.id
+		Tokoh tokoh = Tokoh.findById(id.toLong())
+
+		def res = RelasiEntitasService.listByTokoh(tokoh)
+
+		Graph graph 
+
+		res.each {
+			graph.id = it.id
+			graph.keterangan = it.relasi.keterangan
+		}
+
+		
+
+		render graph  as JSON
 	}
 }

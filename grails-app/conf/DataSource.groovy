@@ -17,7 +17,7 @@ environments {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/lakon?useUnicode=yes&characterEncoding=UTF-8"
             username = "root"
-            password = "root"
+            password = ""
         }
     }
     test {

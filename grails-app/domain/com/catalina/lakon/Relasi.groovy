@@ -4,6 +4,7 @@ class Relasi {
 
     String keterangan
 	Sumber sumber
+	String type
 
 	static hasMany = [relasiEntitas: RelasiEntitas]
 	static belongsTo = [sumber: Sumber]

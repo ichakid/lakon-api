@@ -49,6 +49,7 @@ class RelasiEntitasController {
 		
 		Graph graph = new Graph()
 
+		//root
 		if (type.equals("tokoh")) {
 			Tokoh tokoh = Tokoh.findById(id.toLong())
 			def res = RelasiEntitasService.listByTokoh(tokoh)		
@@ -57,12 +58,13 @@ class RelasiEntitasController {
 			noder.name = tokoh.nama
 			noder.type = "main"
 			noder.root = true
-			noder.id = 0
+			noder.id = 1
 
 			graph.nodes.add(noder)
 
-			int count=1
+			int count=2
 
+			//level 1
 			for(ite in res){
 				def rel = RelasiEntitas.findAllByRelasi(ite.relasi)
 			    for(ite2 in rel){
@@ -80,7 +82,7 @@ class RelasiEntitasController {
 							edge.source = 0
 							edge.target = node.id
 							edge.keterangan = ite.relasi.keterangan
-							edge.type = "event"
+							edge.type = ite.relasi.type
 							graph.edges.add(edge)
 			         	}
 			        } else {
@@ -95,11 +97,12 @@ class RelasiEntitasController {
 						edge.source = 0
 						edge.target = node.id
 						edge.keterangan = ite.relasi.keterangan
-						edge.type = "event"
+						edge.type = ite.relasi.type
 						graph.edges.add(edge)
 			        }
 			    }
 			}
+		//root
 		} else if (type.equals("organisasi")){
 			Organisasi org = Organisasi.findById(id.toLong())
 			def res = RelasiEntitasService.listByOrganisasi(org)		
@@ -114,6 +117,7 @@ class RelasiEntitasController {
 
 			int count=1
 
+			//level 1
 			for(ite in res){
 				def rel = RelasiEntitas.findAllByRelasi(ite.relasi)
 			    for(ite2 in rel){
@@ -121,7 +125,7 @@ class RelasiEntitasController {
 			    	if (ite2.organisasi !=null) {
 			    		def org2 = Organisasi.findById(ite2.organisasi.id)
 			    		if (org2.id != id.toLong()) { 	
-				         	node.name = toorg2k.nama
+				         	node.name = org2.nama
 				         	node.type = "organisasi"
 				         	node.id = count
 				         	graph.nodes.add(node)
@@ -131,7 +135,7 @@ class RelasiEntitasController {
 							edge.source = 0
 							edge.target = node.id
 							edge.keterangan = ite.relasi.keterangan
-							edge.type = "event"
+							edge.type = ite.relasi.type
 							graph.edges.add(edge)
 			         	}
 			        } else {
@@ -146,16 +150,13 @@ class RelasiEntitasController {
 						edge.source = 0
 						edge.target = node.id
 						edge.keterangan = ite.relasi.keterangan
-						edge.type = "event"
+						edge.type = ite.relasi.type
 						graph.edges.add(edge)
 			        }
 			    }
 			}
 
 		}
-
-		
-
 		render graph  as JSON
 	}
 }

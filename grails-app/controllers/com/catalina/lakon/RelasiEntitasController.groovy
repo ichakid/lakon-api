@@ -58,11 +58,11 @@ class RelasiEntitasController {
 			noder.name = tokoh.nama
 			noder.type = "main"
 			noder.root = true
-			noder.id = 1
+			noder.id = 0
 
 			graph.nodes.add(noder)
 
-			int count=2
+			int count=1
 
 			//level 1
 			for(ite in res){
@@ -155,7 +155,6 @@ class RelasiEntitasController {
 			        }
 			    }
 			}
-
 		}
 		render graph  as JSON
 	}

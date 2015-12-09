@@ -15,8 +15,10 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:mysql://localhost:3306/admin_lakon?useUnicode=yes&characterEncoding=UTF-8"
+            username = "root"
+            password = ""
         }
     }
     test {
@@ -26,20 +28,16 @@ environments {
         }
     }
     production {
-        dataSource {
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            properties {
-               maxActive = -1
-               minEvictableIdleTimeMillis=1800000
-               timeBetweenEvictionRunsMillis=1800000
-               numTestsPerEvictionRun=3
-               testOnBorrow=true
-               testWhileIdle=true
-               testOnReturn=false
-               validationQuery="SELECT 1"
-               jdbcInterceptors="ConnectionState"
-            }
-        }
+      dataSource {
+          dbCreate = "update"
+          driverClassName = "org.postgresql.Driver"
+          dialect = org.hibernate.dialect.PostgreSQLDialect
+
+          uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
+
+          url = "jdbc:postgresql://" + uri.host + ":" + uri.port + uri.path
+          username = uri.userInfo.split(":")[0]
+          password = uri.userInfo.split(":")[1]
+      }
     }
 }

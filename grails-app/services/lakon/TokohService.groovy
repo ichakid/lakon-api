@@ -59,14 +59,3 @@ class TokohService {
 		return out.save(failOnError: true)
 	}
 }
-package lakon
-
-import grails.transaction.Transactional
-
-@Transactional
-class TokohService {
-
-    def serviceMethod() {
-
-    }
-}

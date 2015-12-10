@@ -2,18 +2,12 @@ package lakon
 
 class Sumber {
 	
-	String nama
-	String linkweb
-	Boolean isPemerintah
-	Boolean isBusinessman
-	Boolean isPolitician
+	String link
+	String who
 	
-	static hasMany = [relasiEntitas: RelasiEntitas]
+	static hasMany = [relasi:Relasi]
 	
 	static mapping = {
-		id column: "TOKOH_ID"
+		id column: "SUMBER_ID"
 	}
-
-    static constraints = {
-    }
 }
